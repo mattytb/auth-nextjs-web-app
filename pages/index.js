@@ -17,9 +17,8 @@ const Index = (props) => (
       <ol>
         <li>To learn</li>
         <li>To be the base of apps I intend to build in the future needing a userbase.</li>
-      </ol>
-      <h3>Don't worry</h3>
-      <p>I am in no way interested in your email which is required for this app via the Facebook login, on login you will be able to delete yourself from this app and you will be completely removed from the DB.</p>
+      </ol><br />
+      <p><i>I am in no way interested in your email which is required for this app via the Facebook login, on login you will be able to delete yourself from this app and you will be completely removed from the DB.</i></p>
     </div>
   </Layout>
 )
