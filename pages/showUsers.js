@@ -12,10 +12,10 @@ const ShowUsers = (props) => (
             <ul>
                 {props.userList.map((user, index) => (
                     <li key={index}>
-			 			<img src={user.image} alt={user.name}/> 
-			 			<span>{user.name}</span>
-                         <DeleteButton userId={user.id} currentUser={props.currentUser} />
-			 		</li>
+                        <img src={user.image} alt={user.name}/> 
+                        <span>{user.name}</span>
+                        <DeleteButton userId={user.id} currentUser={props.currentUser} />
+                    </li>
                 ))}
             </ul>
             <style jsx>
