@@ -1,9 +1,9 @@
 export default (props) => (
     <div id="loggedInSection">
-        <img src="/static/profile_holding.jpg"/>
+        <img src={props.user.imageSrc}/>
         <div className="innerWrap">
-            <span>Welcome, Matthew Barnden</span>
-            <a className="facebookLogoutButton">Log out</a>
+            <span>Welcome, {props.user.name}</span>
+            <a onClick={()=> { props.logout() } } className="facebookLogoutButton">Log out</a>
         </div>
         <style jsx>
             {`

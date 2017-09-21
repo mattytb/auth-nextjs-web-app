@@ -1,10 +1,11 @@
 import Head from 'next/head'
+
 export default (props) => (
   <div>
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta charSet="utf-8" />
-      <title>My authentiation app - {props.headerText}</title>
+      <title>{props.title}</title>
     </Head>
     <style jsx global>{`
         html, body {
@@ -42,6 +43,14 @@ export default (props) => (
             clear:left;
             padding:0px 45px;
             margin:3.5px 0;
+        }
+        .bgWrap {
+            margin-top:50px;
+            float:left;
+            background-color: #fff;
+            width:100%;
+            padding:25px 0 50px 0;
+            box-shadow: 3px 3px 3px #ccc;
         }
     `}</style>
   </div>

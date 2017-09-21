@@ -1,4 +1,5 @@
-import Layout from '../components/MyLayout.js'
+import Layout from '../components/layout'
+import AuthenticatedUser from '../lib/getAuthenticatedUser'
 
 const Index = (props) => (
 
@@ -10,27 +11,32 @@ const Index = (props) => (
 						<p>There will also be a React Native app for both iOS and Android to follow</p>
 						<h3>On Login</h3>
 						<p>On login you will be able to see a list of dummy users and users who have also logged in to the app</p>
-            <style jsx>
-              {`
-                .bgWrap {
-                  margin-top:50px;
-                  float:left;
-                  background-color: #fff;
-                  width:100%;
-                  padding:25px 0 50px 0;
-                  box-shadow: 3px 3px 3px #ccc;
-                }
-              `}
-            </style>
 					</div>
   </Layout>
 )
 
 Index.getInitialProps = async function({ req }) {
-    return {
-       headerText:"from index", 
-       indexSelected:"selected"
+
+  let cookie = null;
+
+  if(req) cookie = req.headers.cookie;
+
+  const user = await AuthenticatedUser(cookie);
+
+  return {
+    metaInfo:{
+      title:"Authenticate with facebook"
+    },
+    navigation: {
+      indexActive: "selected",
+      usersActive: !user ? "hidden": ""
+    },
+    authentication: {
+      authenticatedUser: user,
+      cookie
     }
+  }
+
 }
 
-export default Index;
+export default Index

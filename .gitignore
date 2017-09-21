@@ -46,3 +46,5 @@ typings/
 .env
 
 settings.js
+
+.next/

@@ -1,6 +1,6 @@
 export default (props) => (
     <div>
-        <a className="facebookButton">Continue with Facebook</a>
+        <a className="facebookButton" onClick={() => props.loginClick()}>Continue with Facebook</a>
         <style jsx>
             {`
                 .facebookButton {
