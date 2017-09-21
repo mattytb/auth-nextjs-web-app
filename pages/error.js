@@ -9,7 +9,7 @@ const Error = (props) => (
 )
 
 Error.getInitialProps = async function({ req, res }) {
-    console.log(req);
+    
     let cookie = null;
     if(req) cookie = req.headers.cookie;
 
