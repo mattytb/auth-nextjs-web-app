@@ -50,4 +50,5 @@ typings/
 settings.js
 
 .DS_Store
+*/.DS_Store
 

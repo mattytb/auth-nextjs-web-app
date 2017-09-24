@@ -4,7 +4,7 @@ import AuthenticatedUser from '../lib/getAuthenticatedUser'
 const Index = (props) => (
 
   <Layout {...props}>
-    <div class="bgWrap">
+    <div className="bgWrap">
       <h2>Welcome</h2>
       <p>This site is an example of using Facebook login with an API using <a href="https://en.wikipedia.org/wiki/JSON_Web_Token">JSON web tokens</a></p>
       <p>The front end is built using Next.JS, the code is available 

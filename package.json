@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start -p $PORT",
+    "heroku-postbuild": "next build"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +17,7 @@
     "next": "^3.2.2",
     "nprogress": "^0.2.0",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "universal-cookie": "^2.1.0"
   }
 }

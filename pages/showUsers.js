@@ -62,13 +62,11 @@ const ShowUsers = (props) => (
 )
 
 ShowUsers.getInitialProps = async function({ req, res }) {
-    
     let cookie = null;
 
     if(req) cookie = req.headers.cookie;
 
     const user = await AuthenticatedUser(cookie);
-
 
     if(!user) Redirect('/404', res);
 
