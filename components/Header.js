@@ -12,7 +12,7 @@ export default class Header extends React.Component {
       super(props);
       this.state = {
           user:props.authenticatedUser,
-          loggedIn: null
+          loggedIn: props.authenticatedUser !== null
       }
       
       this.statusChangeCallback = this.statusChangeCallback.bind(this);
@@ -30,7 +30,7 @@ export default class Header extends React.Component {
           deleteUserCookie(this.props.cookie);
         }
         else {
-            this.setState({loggedIn:true});
+            this.setState({loggedIn:true, user:this.state.user});
         }
     }
 
