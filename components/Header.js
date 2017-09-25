@@ -12,7 +12,7 @@ export default class Header extends React.Component {
       super(props);
       this.state = {
           user:props.authenticatedUser,
-          loggedIn: null
+          loggedIn: props.authenticatedUser !== null
       }
       
       this.statusChangeCallback = this.statusChangeCallback.bind(this);
@@ -36,7 +36,7 @@ export default class Header extends React.Component {
 
     handleLoginClick(){
         var self = this;
-        self.setState({loggedIn:null});
+        this.setState({loggedIn:null});
         FB.login(async function(response){
             const data = await getFacebookUser(response.authResponse.accessToken);
             const user = createUserCookie(null, data.token, data.userId, data.name, data.image);
