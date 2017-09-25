@@ -7,9 +7,9 @@ const Index = (props) => (
     <div className="bgWrap">
       <h2>Welcome</h2>
       <p>This site is an example of using Facebook login with an API using <a href="https://en.wikipedia.org/wiki/JSON_Web_Token">JSON web tokens</a></p>
-      <p>The front end is built using Next.JS, the code is available 
-      <a href="https://github.com/esharmony/auth-nextjs-web-app">here</a> and the backend API is build with Node.JS and this code can be found <a href="https://github.com/esharmony/authentication-api">here </a></p>
-      <p>There will also be a React Native app for both iOS and Android to follow and a React only web app.</p>
+      <p>The front end is built using Next.JS, the code is available <a href="https://github.com/esharmony/auth-nextjs-web-app"> here</a> and the backend API is build with Node.JS and this code can be found <a target="_blank" href="https://github.com/esharmony/authentication-api">here </a></p>
+      <p>There is a react only version that uses react router for comparison which can be viewed here <a target="_blank" href="https://stormy-anchorage-48490.herokuapp.com/"> here</a> and the code for this can be viewed <a target="_blank" href="https://github.com/esharmony/auth-nextjs-web-app"> here</a></p>
+      <p>There will also be a React Native app for both iOS and Android to follow.</p>
       <h3>On Login</h3>
       <p>On login you will be able to see a list of users who have also logged in to the app - thats it.</p>
       <h3>Why?</h3>

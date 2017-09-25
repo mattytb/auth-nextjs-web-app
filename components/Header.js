@@ -1,5 +1,6 @@
 import FacebookLoginButton from '../components/facebookLoginButton'
 import LoggedInSection from '../components/loggedInSection'
+import Spinner from '../components/spinner'
 import { deleteUserCookie, createUserCookie } from '../lib/userCookieHelper'
 import FacebookLoginInit from '../lib/facebookLoginInit'
 import { getFacebookUser } from '../lib/apiClient'
@@ -10,13 +11,13 @@ export default class Header extends React.Component {
     constructor (props) {
       super(props);
       this.state = {
-          user:props.authenticatedUser
+          user:props.authenticatedUser,
+          loggedIn: null
       }
       
       this.statusChangeCallback = this.statusChangeCallback.bind(this);
       this.handleLoginClick = this.handleLoginClick.bind(this);
       this.handleLogoutClick = this.handleLogoutClick.bind(this);
-
     }
 
     componentDidMount() {
@@ -25,7 +26,7 @@ export default class Header extends React.Component {
 
     statusChangeCallback(response) {
         if (response.status !== 'connected') {
-          this.setState({user:null});
+          this.setState({user:null, loggedIn:false});
           deleteUserCookie(this.props.cookie);
         }
     }
@@ -35,7 +36,7 @@ export default class Header extends React.Component {
         FB.login(async function(response){
             const data = await getFacebookUser(response.authResponse.accessToken);
             const user = createUserCookie(null, data.token, data.userId, data.name, data.image);
-            self.setState({user:user});
+            self.setState({user:user, loggedIn:true});
             Redirect('/showUsers');
         }, {scope: 'email,public_profile', return_scopes: true});
     }
@@ -44,18 +45,23 @@ export default class Header extends React.Component {
         var self = this;
         FB.logout(function(response){
            deleteUserCookie();
-           self.setState({user:null});
+           self.setState({user:null, loggedIn:false});
            Redirect('/');
         });
     }
 
     render(){
-
         let loggedInSection = null;
 
-        loggedInSection = this.state.user !== null
-            ? <LoggedInSection user={this.state.user} logout={this.handleLogoutClick}/> 
-            : <FacebookLoginButton loginClick={ this.handleLoginClick } />;
+        if(this.state.loggedIn === true){
+            loggedInSection = <LoggedInSection user={this.state.user} logout={this.handleLogoutClick}/>         
+        }
+        else if(this.state.loggedIn === false){
+            loggedInSection = <FacebookLoginButton loginClick={ this.handleLoginClick } />;
+        }
+        else {
+            loggedInSection = <Spinner />;
+        }
 
         return (
 
