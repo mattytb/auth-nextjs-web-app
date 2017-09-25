@@ -58,10 +58,10 @@ export default class Header extends React.Component {
     render(){
         let loggedInSection = null;
 
-        if(this.state.loggedIn === null){
+        if(this.state.loggedIn === true){
             loggedInSection = <LoggedInSection user={this.state.user} logout={this.handleLogoutClick}/>         
         }
-        else if(this.state.loggedIn === null){
+        else if(this.state.loggedIn === false){
             loggedInSection = <FacebookLoginButton loginClick={ this.handleLoginClick } />;
         }
         else {
