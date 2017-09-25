@@ -8,10 +8,14 @@ export default class DeleteButton extends React.Component {
     constructor(props){
         super(props);
         this.handleClick = this.handleClick.bind(this);
+        this.state = {
+            deleteButtonVisible : true
+        }
     }
 
     handleClick(){
         const self = this;
+        this.setState({deleteButtonVisible : false})
         FB.logout(async function(response){
             await deleteUser(self.props.currentUser.token, self.props.currentUser.id);
             deleteUserCookie();
@@ -47,9 +51,35 @@ export default class DeleteButton extends React.Component {
             )
                 
         }
-        let button = this.props.userId === this.props.currentUser.id 
-            ? deleteButtonMarkup() 
-            : "";
+        const spinnerMarkup = () => {
+            return (
+                <div>
+                    <span></span>
+                    <style jsx>
+                    {`
+                        span {
+                            width:15px;
+                            height:15px;
+                            float:right;
+                            margin-top:17px;
+                            background: #fff url("../static/loader.gif")  no-repeat 0px 0px;
+                            background-size: 15px 15px;
+                        }
+                    `}
+                    </style>
+                </div>
+            )
+        }
+        let button = null;
+        if(this.props.userId === this.props.currentUser.id && this.state.deleteButtonVisible){
+            button = deleteButtonMarkup();
+        }
+        else if(this.props.userId === this.props.currentUser.id && !this.state.deleteButtonVisible){
+            button = spinnerMarkup();
+        }
+        else {
+            button = "";
+        }
 
         return (
             <div>{button}</div>
