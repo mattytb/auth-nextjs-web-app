@@ -6,7 +6,7 @@ export default () => (
         span {
             width:50px;
             height:50px;
-            background:url('../images/loader.gif') no-repeat;
+            background:url('../static/loader.gif') no-repeat;
             float:right;
             margin:50px 0px 0 0;
         }

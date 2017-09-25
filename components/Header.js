@@ -29,6 +29,9 @@ export default class Header extends React.Component {
           this.setState({user:null, loggedIn:false});
           deleteUserCookie(this.props.cookie);
         }
+        else {
+            this.setState({loggedIn:true});
+        }
     }
 
     handleLoginClick(){
