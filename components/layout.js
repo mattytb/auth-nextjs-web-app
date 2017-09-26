@@ -1,6 +1,6 @@
-import Header from '../components/header'
-import Head from '../components/head'
-import NavBar from '../components/navBar'
+import Header from './components/header'
+import Head from './components/head'
+import NavBar from './components/navBar'
 
 const Layout = (props) => (
   <div>
