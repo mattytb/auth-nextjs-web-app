@@ -1,17 +1,15 @@
 module.exports = {
-    webpack: config => {
-      // Fixes npm packages that depend on `fs` module
-      config.node = {
-        fs: 'empty'
+    distDir: 'build',
+    exportPathMap: () => {
+      return {
+        "/": { page: "/" },
       }
-      config.module.rules.push({
-        test: /\.css$/,
-        loader: ['style-loader', 'css-loader']
-      })
-      if (config.resolve.alias) {
-        delete config.resolve.alias.react
-        delete config.resolve.alias['react-dom']
+    },
+    webpack: function (c) {
+      if (c.resolve.alias) {
+        delete c.resolve.alias['react']
+        delete c.resolve.alias['react-dom']
       }
-      return config
-    }
+      return c
+    },
   }
