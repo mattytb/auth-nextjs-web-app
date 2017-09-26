@@ -1,10 +1,10 @@
-import FacebookLoginButton from '../components/facebookLoginButton'
-import LoggedInSection from '../components/loggedInSection'
-import Spinner from '../components/spinner'
+import FacebookLoginButton from './facebookLoginButton'
+import LoggedInSection from './loggedInSection'
+import Spinner from './spinner'
 import { deleteUserCookie, createUserCookie } from '../lib/userCookieHelper'
 import FacebookLoginInit from '../lib/facebookLoginInit'
 import { getFacebookUser } from '../lib/apiClient'
-import Redirect from '../lib/redirect.js'
+import Redirect from '../lib/redirect'
 
 export default class Header extends React.Component {
 
@@ -14,7 +14,6 @@ export default class Header extends React.Component {
           user:props.authenticatedUser,
           loggedIn: props.authenticatedUser !== null
       }
-      
       this.statusChangeCallback = this.statusChangeCallback.bind(this);
       this.handleLoginClick = this.handleLoginClick.bind(this);
       this.handleLogoutClick = this.handleLogoutClick.bind(this);
@@ -25,12 +24,12 @@ export default class Header extends React.Component {
     }
 
     statusChangeCallback(response) {
-        if (response.status !== 'connected') {
-          this.setState({user:null, loggedIn:false});
-          deleteUserCookie(this.props.cookie);
+        if (response.status === 'connected') {
+            this.setState({loggedIn:true, user:this.state.user});
         }
         else {
-            this.setState({loggedIn:true, user:this.state.user});
+            this.setState({user:null, loggedIn:false});
+            deleteUserCookie(this.props.cookie);
         }
     }
 
@@ -38,10 +37,17 @@ export default class Header extends React.Component {
         var self = this;
         this.setState({loggedIn:null});
         FB.login(async function(response){
-            const data = await getFacebookUser(response.authResponse.accessToken);
-            const user = createUserCookie(null, data.token, data.userId, data.name, data.image);
-            self.setState({user:user, loggedIn:true});
-            Redirect('/showUsers');
+            if(response.status !== 'connected'){
+                self.setState({user:null, loggedIn:false});
+                deleteUserCookie(self.props.cookie);
+            }
+            else {
+                const data = await getFacebookUser(response.authResponse.accessToken);
+                const user = createUserCookie(null, data.token, data.userId, data.name, data.image);
+                self.setState({user:user, loggedIn:true});
+                Redirect('/showUsers');
+            }
+            
         }, {scope: 'email,public_profile', return_scopes: true});
     }
 

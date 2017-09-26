@@ -1,6 +1,6 @@
 
 import { deleteUserCookie } from '../lib/userCookieHelper'
-import Redirect from '../lib/redirect.js'
+import Redirect from '../lib/redirect'
 import { deleteUser } from '../lib/apiClient'
 
 export default class DeleteButton extends React.Component {
