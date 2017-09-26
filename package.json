@@ -2,12 +2,11 @@
   "name": "next-authenticate",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "postinstall": "npm run build",
-    "start": "NODE_ENV=production node server.js"
+    "start": "next start -p $PORT",
+    "heroku-postbuild": "npm run build"
     
   },
   "engines": {
