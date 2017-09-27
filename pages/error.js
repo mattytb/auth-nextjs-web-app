@@ -1,5 +1,5 @@
-import Layout from 'components/layout'
-import AuthenticatedUser from 'lib/getAuthenticatedUser'
+import Layout from '../components/layout'
+import AuthenticatedUser from '../lib/getAuthenticatedUser'
 const Error = (props) => (
     <Layout {...props}>
         <div className="bgWrap">
