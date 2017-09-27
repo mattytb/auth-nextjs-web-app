@@ -1,4 +1,4 @@
-import Layout from 'components/layout'
+import Layout from '../components/layout'
 import AuthenticatedUser from '../lib/getAuthenticatedUser'
 
 const Index = (props) => (
