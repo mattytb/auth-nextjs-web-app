@@ -22,7 +22,5 @@
     "react-dom": "^15.6.1",
     "universal-cookie": "^2.1.0"
   },
-  "devDependencies": {
-    "babel-plugin-root-import": "^5.1.0"
-  }
+  "devDependencies": {}
 }
