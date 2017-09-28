@@ -6,7 +6,7 @@
     "dev": "next",
     "export": "next export",
     "build": "next build",
-    "start": "NODE_ENV=production node server.express.js",
+    "start": "next start",
     "postinstall": "npm run build"
   },
   "author": "",
