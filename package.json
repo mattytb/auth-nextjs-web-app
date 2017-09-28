@@ -4,9 +4,10 @@
   "description": "",
   "scripts": {
     "dev": "next",
-    "build": "next build && echo $(git rev-parse HEAD) > .next/BUILD_ID && echo {\\\"app.js\\\":{\\\"hash\\\":\\\"$(git rev-parse HEAD)\\\"}} > .next/build-stats.json",
-    "start": "next start",
-    "heroku-postbuild": "npm run build"
+    "export": "next export",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.express.js",
+    "postinstall": "npm run build"
   },
   "author": "",
   "license": "ISC",
